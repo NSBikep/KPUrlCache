@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97284D261689AEE900FCF1E1 /* KPBaseURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */; };
+		97284D2A1689AF1200FCF1E1 /* KPCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 97284D291689AF1200FCF1E1 /* KPCacheObject.m */; };
+		975D123C1689AE39001457AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123B1689AE39001457AC /* UIKit.framework */; };
+		975D123E1689AE39001457AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123D1689AE39001457AC /* Foundation.framework */; };
+		975D12401689AE39001457AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123F1689AE39001457AC /* CoreGraphics.framework */; };
+		975D12461689AE39001457AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 975D12441689AE39001457AC /* InfoPlist.strings */; };
+		975D12481689AE39001457AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 975D12471689AE39001457AC /* main.m */; };
+		975D124C1689AE39001457AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 975D124B1689AE39001457AC /* AppDelegate.m */; };
+		975D124E1689AE39001457AC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 975D124D1689AE39001457AC /* Default.png */; };
+		975D12501689AE39001457AC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 975D124F1689AE39001457AC /* Default@2x.png */; };
+		975D12521689AE39001457AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 975D12511689AE39001457AC /* Default-568h@2x.png */; };
+		975D125A1689AE39001457AC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D12591689AE39001457AC /* SenTestingKit.framework */; };
+		975D125B1689AE39001457AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123B1689AE39001457AC /* UIKit.framework */; };
+		975D125C1689AE39001457AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123D1689AE39001457AC /* Foundation.framework */; };
+		975D12641689AE39001457AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 975D12621689AE39001457AC /* InfoPlist.strings */; };
+		975D12671689AE39001457AC /* KPURLCahceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 975D12661689AE39001457AC /* KPURLCahceTests.m */; };
+		97FC7055168BE14B007EF633 /* KPURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FC7054168BE14B007EF633 /* KPURLCache.m */; };
+		97FC705F168C3A49007EF633 /* KPURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FC7054168BE14B007EF633 /* KPURLCache.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		975D125D1689AE39001457AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 975D122E1689AE39001457AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 975D12361689AE39001457AC;
+			remoteInfo = KPURLCahce;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		97284D241689AEE900FCF1E1 /* KPBaseURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPBaseURLCache.h; sourceTree = "<group>"; };
+		97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPBaseURLCache.m; sourceTree = "<group>"; };
+		97284D281689AF1200FCF1E1 /* KPCacheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCacheObject.h; sourceTree = "<group>"; };
+		97284D291689AF1200FCF1E1 /* KPCacheObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCacheObject.m; sourceTree = "<group>"; };
+		975D12371689AE39001457AC /* KPURLCahce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KPURLCahce.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		975D123B1689AE39001457AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		975D123D1689AE39001457AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		975D123F1689AE39001457AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		975D12431689AE39001457AC /* KPURLCahce-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KPURLCahce-Info.plist"; sourceTree = "<group>"; };
+		975D12451689AE39001457AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		975D12471689AE39001457AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		975D12491689AE39001457AC /* KPURLCahce-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KPURLCahce-Prefix.pch"; sourceTree = "<group>"; };
+		975D124A1689AE39001457AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		975D124B1689AE39001457AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		975D124D1689AE39001457AC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		975D124F1689AE39001457AC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		975D12511689AE39001457AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		975D12581689AE39001457AC /* KPURLCahceTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KPURLCahceTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		975D12591689AE39001457AC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		975D12611689AE39001457AC /* KPURLCahceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KPURLCahceTests-Info.plist"; sourceTree = "<group>"; };
+		975D12631689AE39001457AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		975D12651689AE39001457AC /* KPURLCahceTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPURLCahceTests.h; sourceTree = "<group>"; };
+		975D12661689AE39001457AC /* KPURLCahceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPURLCahceTests.m; sourceTree = "<group>"; };
+		97FC7053168BE14B007EF633 /* KPURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPURLCache.h; sourceTree = "<group>"; };
+		97FC7054168BE14B007EF633 /* KPURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPURLCache.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		975D12341689AE39001457AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D123C1689AE39001457AC /* UIKit.framework in Frameworks */,
+				975D123E1689AE39001457AC /* Foundation.framework in Frameworks */,
+				975D12401689AE39001457AC /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975D12541689AE39001457AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D125A1689AE39001457AC /* SenTestingKit.framework in Frameworks */,
+				975D125B1689AE39001457AC /* UIKit.framework in Frameworks */,
+				975D125C1689AE39001457AC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97284D271689AEF100FCF1E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97284D281689AF1200FCF1E1 /* KPCacheObject.h */,
+				97284D291689AF1200FCF1E1 /* KPCacheObject.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		97284D351689B4BF00FCF1E1 /* URLCahce */ = {
+			isa = PBXGroup;
+			children = (
+				97FC7053168BE14B007EF633 /* KPURLCache.h */,
+				97FC7054168BE14B007EF633 /* KPURLCache.m */,
+			);
+			name = URLCahce;
+			sourceTree = "<group>";
+		};
+		975D122C1689AE39001457AC = {
+			isa = PBXGroup;
+			children = (
+				975D12411689AE39001457AC /* KPURLCahce */,
+				975D125F1689AE39001457AC /* KPURLCahceTests */,
+				975D123A1689AE39001457AC /* Frameworks */,
+				975D12381689AE39001457AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		975D12381689AE39001457AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				975D12371689AE39001457AC /* KPURLCahce.app */,
+				975D12581689AE39001457AC /* KPURLCahceTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		975D123A1689AE39001457AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				975D123B1689AE39001457AC /* UIKit.framework */,
+				975D123D1689AE39001457AC /* Foundation.framework */,
+				975D123F1689AE39001457AC /* CoreGraphics.framework */,
+				975D12591689AE39001457AC /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		975D12411689AE39001457AC /* KPURLCahce */ = {
+			isa = PBXGroup;
+			children = (
+				97284D351689B4BF00FCF1E1 /* URLCahce */,
+				97284D271689AEF100FCF1E1 /* Model */,
+				975D124A1689AE39001457AC /* AppDelegate.h */,
+				975D124B1689AE39001457AC /* AppDelegate.m */,
+				975D12421689AE39001457AC /* Supporting Files */,
+				97284D241689AEE900FCF1E1 /* KPBaseURLCache.h */,
+				97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */,
+			);
+			path = KPURLCahce;
+			sourceTree = "<group>";
+		};
+		975D12421689AE39001457AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				975D12431689AE39001457AC /* KPURLCahce-Info.plist */,
+				975D12441689AE39001457AC /* InfoPlist.strings */,
+				975D12471689AE39001457AC /* main.m */,
+				975D12491689AE39001457AC /* KPURLCahce-Prefix.pch */,
+				975D124D1689AE39001457AC /* Default.png */,
+				975D124F1689AE39001457AC /* Default@2x.png */,
+				975D12511689AE39001457AC /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		975D125F1689AE39001457AC /* KPURLCahceTests */ = {
+			isa = PBXGroup;
+			children = (
+				975D12651689AE39001457AC /* KPURLCahceTests.h */,
+				975D12661689AE39001457AC /* KPURLCahceTests.m */,
+				975D12601689AE39001457AC /* Supporting Files */,
+			);
+			path = KPURLCahceTests;
+			sourceTree = "<group>";
+		};
+		975D12601689AE39001457AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				975D12611689AE39001457AC /* KPURLCahceTests-Info.plist */,
+				975D12621689AE39001457AC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		975D12361689AE39001457AC /* KPURLCahce */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 975D126A1689AE39001457AC /* Build configuration list for PBXNativeTarget "KPURLCahce" */;
+			buildPhases = (
+				975D12331689AE39001457AC /* Sources */,
+				975D12341689AE39001457AC /* Frameworks */,
+				975D12351689AE39001457AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KPURLCahce;
+			productName = KPURLCahce;
+			productReference = 975D12371689AE39001457AC /* KPURLCahce.app */;
+			productType = "com.apple.product-type.application";
+		};
+		975D12571689AE39001457AC /* KPURLCahceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 975D126D1689AE39001457AC /* Build configuration list for PBXNativeTarget "KPURLCahceTests" */;
+			buildPhases = (
+				975D12531689AE39001457AC /* Sources */,
+				975D12541689AE39001457AC /* Frameworks */,
+				975D12551689AE39001457AC /* Resources */,
+				975D12561689AE39001457AC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				975D125E1689AE39001457AC /* PBXTargetDependency */,
+			);
+			name = KPURLCahceTests;
+			productName = KPURLCahceTests;
+			productReference = 975D12581689AE39001457AC /* KPURLCahceTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		975D122E1689AE39001457AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WHY;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "王浩宇";
+			};
+			buildConfigurationList = 975D12311689AE39001457AC /* Build configuration list for PBXProject "KPURLCahce" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 975D122C1689AE39001457AC;
+			productRefGroup = 975D12381689AE39001457AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				975D12361689AE39001457AC /* KPURLCahce */,
+				975D12571689AE39001457AC /* KPURLCahceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		975D12351689AE39001457AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D12461689AE39001457AC /* InfoPlist.strings in Resources */,
+				975D124E1689AE39001457AC /* Default.png in Resources */,
+				975D12501689AE39001457AC /* Default@2x.png in Resources */,
+				975D12521689AE39001457AC /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975D12551689AE39001457AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D12641689AE39001457AC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		975D12561689AE39001457AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		975D12331689AE39001457AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D12481689AE39001457AC /* main.m in Sources */,
+				975D124C1689AE39001457AC /* AppDelegate.m in Sources */,
+				97284D261689AEE900FCF1E1 /* KPBaseURLCache.m in Sources */,
+				97284D2A1689AF1200FCF1E1 /* KPCacheObject.m in Sources */,
+				97FC705F168C3A49007EF633 /* KPURLCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975D12531689AE39001457AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975D12671689AE39001457AC /* KPURLCahceTests.m in Sources */,
+				97FC7055168BE14B007EF633 /* KPURLCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		975D125E1689AE39001457AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 975D12361689AE39001457AC /* KPURLCahce */;
+			targetProxy = 975D125D1689AE39001457AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		975D12441689AE39001457AC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				975D12451689AE39001457AC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		975D12621689AE39001457AC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				975D12631689AE39001457AC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		975D12681689AE39001457AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		975D12691689AE39001457AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		975D126B1689AE39001457AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KPURLCahce/KPURLCahce-Prefix.pch";
+				INFOPLIST_FILE = "KPURLCahce/KPURLCahce-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		975D126C1689AE39001457AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KPURLCahce/KPURLCahce-Prefix.pch";
+				INFOPLIST_FILE = "KPURLCahce/KPURLCahce-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		975D126E1689AE39001457AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KPURLCahce.app/KPURLCahce";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KPURLCahce/KPURLCahce-Prefix.pch";
+				INFOPLIST_FILE = "KPURLCahceTests/KPURLCahceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		975D126F1689AE39001457AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KPURLCahce.app/KPURLCahce";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KPURLCahce/KPURLCahce-Prefix.pch";
+				INFOPLIST_FILE = "KPURLCahceTests/KPURLCahceTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		975D12311689AE39001457AC /* Build configuration list for PBXProject "KPURLCahce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975D12681689AE39001457AC /* Debug */,
+				975D12691689AE39001457AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		975D126A1689AE39001457AC /* Build configuration list for PBXNativeTarget "KPURLCahce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975D126B1689AE39001457AC /* Debug */,
+				975D126C1689AE39001457AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		975D126D1689AE39001457AC /* Build configuration list for PBXNativeTarget "KPURLCahceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975D126E1689AE39001457AC /* Debug */,
+				975D126F1689AE39001457AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 975D122E1689AE39001457AC /* Project object */;
+}
