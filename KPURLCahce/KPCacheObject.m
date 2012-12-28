@@ -9,12 +9,14 @@
 #import "KPCacheObject.h"
 
 
-
+#define KP_CACHEOBJECT_NAME         @"KPCacheObjectName"
+#define KP_CACHEOBJECT_ACCESSCOUNT  @"KPAccessCount"
 
 @implementation KPCacheObject
 
-@synthesize accessCount,accessDate,creatDate,dataLength,effectivePeriod,formate,localAddress,modifyDate,netAddress,resourceVersion;
+@synthesize accessCount,accessDate,creatDate,dataLength,effectivePeriod,formate,localAddress,modifyDate,netAddress,resourceVersion,fileName;
 - (void)dealloc{
+    [fileName release];
     [accessDate release];
     [creatDate release];
     [localAddress release];
@@ -23,9 +25,23 @@
     [super dealloc];
 }
 
+
+//dic to object    Now just for testing  , later I will add other infos; 
 - (id)initWithDic:(NSDictionary *)aDic{
     self = [super init];
+    if(self){
+        self.fileName = [aDic valueForKey:KP_CACHEOBJECT_NAME];
+        self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
+    }
+    return self;
     
+}
+
+- (NSDictionary *)toDic{
+    NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
+    [resultDic setObject:self.fileName forKey:KP_CACHEOBJECT_NAME];
+    [resultDic setObject:[NSNumber numberWithInteger:self.accessCount] forKey:KP_CACHEOBJECT_ACCESSCOUNT];
+    return resultDic;
 }
 
 

@@ -14,13 +14,16 @@
 
 
 
-typedef NS_ENUM(NSUInteger, EnumDateFormat) {
-	eDateFormatPNG,			//png
-	eDateFormatMP3,           //mp3
-    eDateFormatOther          //未记录的格式
+typedef NS_ENUM(NSUInteger, EnumDataFormat) {
+	eDataFormatPNG,			//png
+	eDataFormatMP3,           //mp3
+    eDataFormatOther          //未记录的格式
 };
 
 @interface KPCacheObject : NSObject
+
+//file Name
+@property (nonatomic,copy)NSString      *fileName;
 
 //Access Count
 @property (nonatomic,assign)NSInteger  accessCount;
@@ -43,5 +46,9 @@ typedef NS_ENUM(NSUInteger, EnumDateFormat) {
 @property (nonatomic,copy)NSString   *localAddress;
 
 //DataFormate
-@property (nonatomic,readonly)EnumDateFormat  formate;
+@property (nonatomic,readonly)EnumDataFormat  formate;
+
+
+- (NSDictionary *)toDic;
+- (id)initWithDic:(NSDictionary *)aDic;
 @end

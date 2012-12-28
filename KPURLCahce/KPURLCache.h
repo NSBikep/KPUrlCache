@@ -13,10 +13,10 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
     KPURLCachePolicyDisk = 4,       //Disk
 };
 
-typedef NS_ENUM(NSUInteger, EnumDateFormat) {
-	eDateFormatPNG,			//png
-	eDateFormatMP3,           //mp3
-    eDateFormatOther          //未记录的格式
+typedef NS_ENUM(NSUInteger, EnumDataFormat) {
+	eDataFormatPNG,			//png
+	eDataFormatMP3,           //mp3
+    eDataFormatOther          //未记录的格式
 };
 
 
@@ -57,27 +57,27 @@ typedef NS_ENUM(NSUInteger, EnumDateFormat) {
 
 - (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion;
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDateFormat)aFormat;
+- (void)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDataFormat)aFormat;
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDateFormat )aFormat;
+- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat )aFormat;
 
 //read
 - (id)dataForFileName:(NSString *)aName;
 
 - (id)dataForFileName:(NSString *)aName version:(NSInteger)aVersion;
 
-- (id)dataForFileName:(NSString *)aName format:(EnumDateFormat)aFormat;
+- (id)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat;
 
-- (id)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDateFormat)aFormat;
+- (id)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
 
 //find
 - (BOOL)hasDataForName:(NSString *)aName;
 
 - (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion;
 
-- (BOOL)hasDataForName:(NSString *)aName format:(EnumDateFormat)aFormat;
+- (BOOL)hasDataForName:(NSString *)aName format:(EnumDataFormat)aFormat;
 
-- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDateFormat)aFormat;
+- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
 
 
 //remove
