@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97219252168D67D7002D6586 /* KPCacheConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCacheConstant.h; sourceTree = "<group>"; };
 		97284D241689AEE900FCF1E1 /* KPBaseURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPBaseURLCache.h; sourceTree = "<group>"; };
 		97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPBaseURLCache.m; sourceTree = "<group>"; };
 		97284D281689AF1200FCF1E1 /* KPCacheObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCacheObject.h; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 				975D12421689AE39001457AC /* Supporting Files */,
 				97284D241689AEE900FCF1E1 /* KPBaseURLCache.h */,
 				97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */,
+				97219252168D67D7002D6586 /* KPCacheConstant.h */,
 			);
 			path = KPURLCahce;
 			sourceTree = "<group>";

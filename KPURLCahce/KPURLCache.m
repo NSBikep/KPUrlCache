@@ -7,6 +7,7 @@
 //
 
 #import "KPURLCache.h"
+#import "KPCacheObject.h"
 
 
 static  NSString* kDefaultCacheName       = @"KPURLCache";
@@ -25,6 +26,7 @@ static  int modifyTimes = 0;
      name: UIApplicationDidReceiveMemoryWarningNotification
      object: nil];
     [_name release];
+    [_recordArray release];
     //[_diskPath release];
     [super dealloc];
 }
@@ -67,6 +69,12 @@ static  int modifyTimes = 0;
         _name = [aName copy];
         _diskPath = [KPURLCache cacheDiskPathWithName:_name];
         _plistPath = [self cachePlistPathWithName:_name];
+        _recordArray = [[NSMutableArray alloc] init];
+        NSArray *arr = [NSArray arrayWithContentsOfFile:_plistPath];
+        for(NSDictionary *dic in arr){
+            KPCacheObject *obj = [[KPCacheObject alloc]initWithDic:dic];
+            [_recordArray addObject:obj];
+        }
         
         [[NSNotificationCenter defaultCenter]
          addObserver: self
@@ -75,6 +83,21 @@ static  int modifyTimes = 0;
          object: nil];
     }
     return self;
+}
+
+
+#pragma mark -
+#pragma mark Store Data Object
+
+- (void)storeData:(NSData *)aData fileName:(NSString *)aName{
+    KPCacheObject *obj = [[KPCacheObject alloc] init];
+    
+}
+
+- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
+    KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat];
+    //此处应该怎么办？每一次存的时候都需要转换？
+    [_recordArray addObject:obj];
 }
 
 #pragma mark -
@@ -131,6 +154,7 @@ static  int modifyTimes = 0;
 #pragma mark -
 #pragma mark save plist to local
 - (void)saveData{
+    //待考虑。。
     modifyTimes++;
     if(modifyTimes %5 == 0){
         //save....

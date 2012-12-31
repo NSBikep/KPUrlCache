@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KPCacheConstant.h"
 typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 	KPURLCachePolicyNone = 1,		//NO Cache
 	KPURLCachePolicyMemory = 2,		//Memory
     KPURLCachePolicyDisk = 4,       //Disk
-};
-
-typedef NS_ENUM(NSUInteger, EnumDataFormat) {
-	eDataFormatPNG,			//png
-	eDataFormatMP3,           //mp3
-    eDataFormatOther          //未记录的格式
 };
 
 
@@ -31,6 +26,8 @@ typedef NS_ENUM(NSUInteger, EnumDataFormat) {
     NSMutableDictionary *_cacheMemoryResource;
     
     EnumKPURLCachePolicy _cachePolicy;
+    
+    NSMutableArray      *_recordArray;          //the array record in plist ,there are KPCacheObjects in array
     
     float               _cache;
     
@@ -87,7 +84,9 @@ typedef NS_ENUM(NSUInteger, EnumDataFormat) {
 // if needs we can add Others;
 
 //modify
-- (BOOL)moveDataFromName:(NSString *)anOldName toName:(NSString *)aNewName;
+- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName;
+
+//- (BOOL)moveDataFromName:(NSString *)anOldName toName:(NSString *)aNewName;
 
 - (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName;
 

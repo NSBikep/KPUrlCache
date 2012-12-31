@@ -14,7 +14,7 @@
 
 @implementation KPCacheObject
 
-@synthesize accessCount,accessDate,creatDate,dataLength,effectivePeriod,formate,localAddress,modifyDate,netAddress,resourceVersion,fileName;
+@synthesize accessCount,accessDate,creatDate,dataLength,effectivePeriod,format = _format,localAddress,modifyDate,netAddress,resourceVersion,fileName;
 - (void)dealloc{
     [fileName release];
     [accessDate release];
@@ -35,6 +35,16 @@
     }
     return self;
     
+}
+
+- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
+    self = [super init];
+    if(self){
+        self.fileName = aName;
+        self.version = aVersion;
+        _format = aFormat;
+    }
+    return self;
 }
 
 - (NSDictionary *)toDic{

@@ -7,24 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-#define KP_CACHE_OBJECT_
+#import "KPCacheConstant.h"
 
 
 
 
-typedef NS_ENUM(NSUInteger, EnumDataFormat) {
-	eDataFormatPNG,			//png
-	eDataFormatMP3,           //mp3
-    eDataFormatOther          //未记录的格式
-};
+//typedef NS_ENUM(NSUInteger, EnumDataFormat) {
+//	eDataFormatPNG,			//png
+//	eDataFormatMP3,           //mp3
+//    eDataFormatOther          //未记录的格式
+//};
 
-@interface KPCacheObject : NSObject
+@interface KPCacheObject : NSObject{
+    EnumDataFormat  _format;
+}
 
 //file Name
 @property (nonatomic,copy)NSString      *fileName;
-
+//version
+@property (nonatomic,assign)NSInteger   version;
 //Access Count
 @property (nonatomic,assign)NSInteger  accessCount;
 //Create Date
@@ -46,9 +47,14 @@ typedef NS_ENUM(NSUInteger, EnumDataFormat) {
 @property (nonatomic,copy)NSString   *localAddress;
 
 //DataFormate
-@property (nonatomic,readonly)EnumDataFormat  formate;
+@property (nonatomic,readonly)EnumDataFormat  format;
 
+
+
+#warning 是否需要加入一个断点的变量，例如etag的东西
 
 - (NSDictionary *)toDic;
 - (id)initWithDic:(NSDictionary *)aDic;
+- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+
 @end
