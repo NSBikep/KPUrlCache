@@ -50,13 +50,13 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 
 
 //store
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName;
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName;
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion;
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion;
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDataFormat)aFormat;
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDataFormat)aFormat;
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat )aFormat;
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat )aFormat;
 
 //read
 - (id)dataForFileName:(NSString *)aName;

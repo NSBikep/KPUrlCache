@@ -89,12 +89,12 @@ static  int modifyTimes = 0;
 #pragma mark -
 #pragma mark Store Data Object
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName{
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName{
     KPCacheObject *obj = [[KPCacheObject alloc] init];
     
 }
 
-- (void)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
+- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
     KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat];
     //此处应该怎么办？每一次存的时候都需要转换？
     [_recordArray addObject:obj];
