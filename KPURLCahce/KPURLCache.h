@@ -59,21 +59,21 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 - (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat )aFormat;
 
 //read
-- (id)dataForFileName:(NSString *)aName;
+- (NSData *)dataForFileName:(NSString *)aName;
 
-- (id)dataForFileName:(NSString *)aName version:(NSInteger)aVersion;
+- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion;
 
-- (id)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat;
+- (NSData *)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat;
 
-- (id)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
 
 //find
-- (BOOL)hasDataForName:(NSString *)aName;
-
-- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion;
-
-- (BOOL)hasDataForName:(NSString *)aName format:(EnumDataFormat)aFormat;
-
+//- (BOOL)hasDataForName:(NSString *)aName;
+//
+//- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion;
+//
+//- (BOOL)hasDataForName:(NSString *)aName format:(EnumDataFormat)aFormat;
+//
 - (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
 
 

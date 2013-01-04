@@ -8,7 +8,8 @@
 
 #import "KPCacheObject.h"
 
-
+#define KP_CACHEOBJECT_FORMAT       @"KPCacheObjectFormat"
+#define KP_CACHEOBJECT_VERSION      @"KPCacheObjectVersion"
 #define KP_CACHEOBJECT_NAME         @"KPCacheObjectName"
 #define KP_CACHEOBJECT_ACCESSCOUNT  @"KPAccessCount"
 
@@ -50,8 +51,24 @@
 - (NSDictionary *)toDic{
     NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
     [resultDic setObject:self.fileName forKey:KP_CACHEOBJECT_NAME];
+    [resultDic setObject:[NSNumber numberWithInteger:self.version] forKey:KP_CACHEOBJECT_VERSION];
+    [resultDic setObject:[NSNumber numberWithInteger:self.format] forKey:KP_CACHEOBJECT_FORMAT];
     [resultDic setObject:[NSNumber numberWithInteger:self.accessCount] forKey:KP_CACHEOBJECT_ACCESSCOUNT];
     return resultDic;
+}
+
+- (BOOL)isEqual:(id)object{
+    if (object != nil) {
+        KPCacheObject* another = (KPCacheObject*)object;
+        if ([another.fileName isEqualToString:self.fileName]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSUInteger)hash{
+    return [self.fileName hash];
 }
 
 

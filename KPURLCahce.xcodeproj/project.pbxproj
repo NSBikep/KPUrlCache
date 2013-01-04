@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A6140181696C7E800112C75 /* NSData+NSDataAddtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6140171696C7E800112C75 /* NSData+NSDataAddtions.m */; };
 		97284D261689AEE900FCF1E1 /* KPBaseURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */; };
 		97284D2A1689AF1200FCF1E1 /* KPCacheObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 97284D291689AF1200FCF1E1 /* KPCacheObject.m */; };
 		975D123C1689AE39001457AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975D123B1689AE39001457AC /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A6140161696C7E800112C75 /* NSData+NSDataAddtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSDataAddtions.h"; sourceTree = "<group>"; };
+		7A6140171696C7E800112C75 /* NSData+NSDataAddtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSDataAddtions.m"; sourceTree = "<group>"; };
 		97219252168D67D7002D6586 /* KPCacheConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCacheConstant.h; sourceTree = "<group>"; };
 		97284D241689AEE900FCF1E1 /* KPBaseURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPBaseURLCache.h; sourceTree = "<group>"; };
 		97284D251689AEE900FCF1E1 /* KPBaseURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPBaseURLCache.m; sourceTree = "<group>"; };
@@ -90,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A6140141696C7C900112C75 /* Addtions */ = {
+			isa = PBXGroup;
+			children = (
+				7A6140161696C7E800112C75 /* NSData+NSDataAddtions.h */,
+				7A6140171696C7E800112C75 /* NSData+NSDataAddtions.m */,
+			);
+			name = Addtions;
+			sourceTree = "<group>";
+		};
 		97284D271689AEF100FCF1E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +153,7 @@
 		975D12411689AE39001457AC /* KPURLCahce */ = {
 			isa = PBXGroup;
 			children = (
+				7A6140141696C7C900112C75 /* Addtions */,
 				97284D351689B4BF00FCF1E1 /* URLCahce */,
 				97284D271689AEF100FCF1E1 /* Model */,
 				975D124A1689AE39001457AC /* AppDelegate.h */,
@@ -301,6 +314,7 @@
 				97284D261689AEE900FCF1E1 /* KPBaseURLCache.m in Sources */,
 				97284D2A1689AF1200FCF1E1 /* KPCacheObject.m in Sources */,
 				97FC705F168C3A49007EF633 /* KPURLCache.m in Sources */,
+				7A6140181696C7E800112C75 /* NSData+NSDataAddtions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
