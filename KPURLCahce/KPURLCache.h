@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "KPCacheConstant.h"
 typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
-	KPURLCachePolicyNone = 1,		//NO Cache
-	KPURLCachePolicyMemory = 2,		//Memory
-    KPURLCachePolicyDisk = 4,       //Disk
+	KPURLCachePolicyNone = 0,		//NO Cache
+	KPURLCachePolicyMemory = (1<<0),		//Memory
+    KPURLCachePolicyDisk = (1<<1),       //Disk
 };
 
 
@@ -74,11 +74,11 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 //
 //- (BOOL)hasDataForName:(NSString *)aName format:(EnumDataFormat)aFormat;
 //
-- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+//- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
 
 
 //remove
-- (void)removeAll:(BOOL)fromDisk;
+- (BOOL)removeAll:(BOOL)fromDisk;
 
 - (BOOL)removeFileName:(NSString *)aName fromDisk:(BOOL)fromDisk;
 // if needs we can add Others;

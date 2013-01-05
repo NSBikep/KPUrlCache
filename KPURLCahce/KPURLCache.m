@@ -153,7 +153,7 @@ static  int modifyTimes = 0;
         [_cacheResourceList addObject:objDic];
         if(_cachePolicy == KPURLCachePolicyMemory){
             NSString *storeName = [self keyForFileName:aName];
-            [_cacheMemoryResource setObject:objDic forKey:storeName];
+            [_cacheMemoryResource setObject:aData forKey:storeName];
         }
         [self saveDataImmediately:YES];
     }
@@ -164,14 +164,108 @@ static  int modifyTimes = 0;
 #pragma mark -
 #pragma mark read Data
 - (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
-    BOOL flag = [self hasDataForName:aName version:aVersion format:aFormat];
-    if(flag){
-        
-    }else{
-        return nil;
+    //check in Memory
+    NSString *fileKey = [self keyForFileName:aName];
+    NSData *data = nil;
+    data = [_cacheMemoryResource valueForKey:fileKey];
+    if(data == nil){
+        BOOL flag = [self hasDataForName:aName version:aVersion format:aFormat];
+        if(flag){
+            NSString *filePath = [self cachePathForKey:fileKey];
+            NSFileManager* fm = [NSFileManager defaultManager];
+            if([fm fileExistsAtPath:filePath]){
+                data = [NSData dataWithContentsOfFile:filePath];
+            }
+        }
     }
+    return data;
 }
 
+- (NSData *)dataForFileName:(NSString *)aName{
+    return [self dataForFileName:aName version:NSNotFound format:NSNotFound];
+}
+
+- (NSData *)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat{
+    return [self dataForFileName:aName version:NSNotFound format:aFormat];
+}
+
+- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion{
+    return [self dataForFileName:aName version:aVersion format:NSNotFound];
+}
+
+
+#pragma mark -
+#pragma mark remove
+
+- (BOOL)removeAll:(BOOL)fromDisk{
+    BOOL flag = NO;
+    [_cacheMemoryResource removeAllObjects];
+    //remove the folder
+    if(fromDisk){
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if(![fm fileExistsAtPath:_diskPath]){
+            flag = YES;
+        }else{
+            flag = [fm removeItemAtPath:_diskPath error:nil];
+        }        
+        if(flag){
+            [_cacheResourceList removeAllObjects];
+            [_recordArray removeAllObjects];
+            //save or not?
+        }
+    }
+    return flag;
+}
+
+- (BOOL)removeFileName:(NSString *)aName fromDisk:(BOOL)fromDisk{
+    BOOL flag = NO;
+    [_cacheMemoryResource removeObjectForKey:[self keyForFileName:aName]];
+    if(fromDisk){
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSString *filePath = [self cachePathForName:aName];
+        if(![fm fileExistsAtPath:filePath]){
+            flag = YES;
+        }else{
+            flag = [fm removeItemAtPath:[self cachePathForName:filePath] error:nil];
+        }
+        if (flag) {
+            //I have rewrited KPCacheObject's "equal to" method
+            // need better way
+            KPCacheObject *obj = [[KPCacheObject alloc] init];
+            obj.fileName = aName;
+            NSUInteger index = [_recordArray indexOfObject:obj];
+            [obj release];
+            KPCacheObject *objFromArr = [_recordArray objectAtIndex:index];
+            [_cacheResourceList removeObject:[objFromArr toDic]];
+            [_recordArray removeObject:objFromArr];
+            
+            [self saveDataImmediately:YES];
+        }
+    }
+    return flag;
+}
+
+#pragma mark -
+#pragma mark modify
+
+- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName{
+    BOOL flag = NO;
+    KPCacheObject *obj = [[KPCacheObject alloc] init];
+    obj.fileName = anOldName;
+    if([_recordArray containsObject:obj]){
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSString *oldFilePath = [self cachePathForName:anOldName];
+        if([fm fileExistsAtPath:oldFilePath]){
+            NSString *newFilePath = [self cachePathForName:aNewName];
+            //未完成
+        }
+    }
+    return flag;
+}
+
+- (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName{
+    
+}
 
 #pragma mark -
 #pragma mark Utility method
@@ -188,6 +282,11 @@ static  int modifyTimes = 0;
 
 - (NSString*)cachePathForKey:(NSString*)aKey {
     return [_diskPath stringByAppendingPathComponent:aKey];
+}
+
+- (NSString*)cachePathForName:(NSString *)aName {
+    NSString *fileKey = [self keyForFileName:aName];
+    return [self cachePathForKey:fileKey];
 }
 
 - (NSString *)keyForFileName:(NSString *)aName{
@@ -247,7 +346,6 @@ static  int modifyTimes = 0;
 #pragma mark -
 #pragma mark save plist to local
 
-
 - (void)saveDataImmediately:(BOOL)aFlag{
     //待考虑。。
     if(aFlag){
@@ -269,7 +367,7 @@ static  int modifyTimes = 0;
 #pragma mark others
 - (void)didReceiveMemoryWarning:(void*)object {
     // Empty the memory cache when memory is low
-    //[self removeAll:NO];
+    [self removeAll:NO];
 }
 
 @end

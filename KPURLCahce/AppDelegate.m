@@ -20,6 +20,21 @@
     //[KPURLCache sharedCacheByName:QQnum];
     [KPURLCache sharedCache];
     [KPURLCache sharedCacheByName:@"Neo"];
+    
+    
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (int i = 0 ; i<4; i++) {
+        NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:i] forKey:@"test"];
+        [arr addObject:dic];
+    }
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:3] forKey:@"test"];
+    NSDictionary *dic2 = [arr objectAtIndex:3];
+    BOOL a = [dic1 isEqualToDictionary:dic2];
+    BOOL b = [dic1 isEqual:dic2];
+    NSLog(@"a = %d,b = %d",a,b);
+    NSLog(@"count = %d",[arr count]);
+    [arr removeObject:dic1];
+    NSLog(@"!count = %d",[arr count]);
     return YES;
 }
 
