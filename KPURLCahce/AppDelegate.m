@@ -27,9 +27,9 @@
     
     [[KPURLCache sharedCacheByName:@"Neo"] storeData:data fileName:@"helloworld2" version:10 format:eDataFormatPNG];
     
-    //[[KPURLCache sharedCacheByName:@"Neo"] removeFileName:@"helloworld2" fromDisk:YES];
+    [[KPURLCache sharedCacheByName:@"Neo"] removeFileName:@"helloworld2" fromDisk:YES];
     
-    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForFileName:@"helloworld2"];
+    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForFileName:@"helloworld"];
     UIImage *image2= [UIImage imageWithData:data2];
     [self.window addSubview:[[UIImageView alloc] initWithImage:image2]];
     

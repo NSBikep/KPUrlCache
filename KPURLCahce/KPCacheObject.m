@@ -12,6 +12,7 @@
 #define KP_CACHEOBJECT_VERSION      @"KPCacheObjectVersion"
 #define KP_CACHEOBJECT_NAME         @"KPCacheObjectName"
 #define KP_CACHEOBJECT_ACCESSCOUNT  @"KPAccessCount"
+#define KP_CACHEOBJECT_DATALENGTH   @"KPDataLength"
 
 @implementation KPCacheObject
 
@@ -35,19 +36,22 @@
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
         self.version = [[aDic valueForKey:KP_CACHEOBJECT_VERSION] integerValue];
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
+        self.dataLength = [[aDic valueForKey:KP_CACHEOBJECT_DATALENGTH] integerValue];
     }
     return self;
     
 }
 
-- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
+- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat dataLength:(NSUInteger)aDataLength{
     self = [super init];
     if(self){
+        self.dataLength = aDataLength;
         self.fileName = aName;
         self.version = aVersion;
         _format = aFormat;
         self.lastAccessDate = [NSDate date];
         self.creatDate = [NSDate date];
+        
     }
     return self;
 }
@@ -58,6 +62,7 @@
     [resultDic setObject:[NSNumber numberWithInteger:self.version] forKey:KP_CACHEOBJECT_VERSION];
     [resultDic setObject:[NSNumber numberWithInteger:self.format] forKey:KP_CACHEOBJECT_FORMAT];
     [resultDic setObject:[NSNumber numberWithInteger:self.accessCount] forKey:KP_CACHEOBJECT_ACCESSCOUNT];
+    [resultDic setObject:[NSNumber numberWithInteger:self.dataLength] forKey:KP_CACHEOBJECT_DATALENGTH];
     return resultDic;
 }
 

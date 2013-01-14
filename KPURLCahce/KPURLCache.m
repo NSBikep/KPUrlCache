@@ -14,13 +14,18 @@
 static  NSString* kDefaultCacheName       = @"KPURLCache";
 static  KPURLCache *kShareCache = nil;
 static  NSMutableDictionary *shareCaches = nil;
-static  int modifyTimes = 0;
+//static  int modifyTimes = 0;
 
 #define KPURLCACHE_STORE_TIMES                5
 
 
 #define KPURLCACHE_DEFAULT_VERSION            0
 #define KPURLCACHE_DEFAULT_FORMAT             eDataFormatOther
+
+@interface KPURLCache(){
+    int modifyTimes;
+}
+@end
 
 @implementation KPURLCache
 
@@ -36,6 +41,8 @@ static  int modifyTimes = 0;
     [_recordArray release];
     [_cacheMemoryResource release];
     [_cacheResourceList release];
+    [_plistPath release];
+    [self saveDataImmediately:YES];
     //[_diskPath release];
     [super dealloc];
 }
@@ -77,7 +84,7 @@ static  int modifyTimes = 0;
     if(self){
         _name = [aName copy];
         _diskPath = [KPURLCache cacheDiskPathWithName:_name];
-        _plistPath = [self cachePlistPathWithName:_name];
+        _plistPath = [[self cachePlistPathWithName:_name] copy];
         _recordArray = [[NSMutableArray alloc] init];
         _cacheMemoryResource = [[NSMutableDictionary alloc] init];
         _invalidPolicy = KPURLCacheInvalidNone;
@@ -93,6 +100,16 @@ static  int modifyTimes = 0;
          selector: @selector(didReceiveMemoryWarning:)
          name: UIApplicationDidReceiveMemoryWarningNotification
          object: nil];
+        [[NSNotificationCenter defaultCenter]
+         addObserver: self
+         selector: @selector(didReceiveResignActive:)
+         name: UIApplicationWillResignActiveNotification
+         object: nil];
+        [[NSNotificationCenter defaultCenter]
+         addObserver: self
+         selector: @selector(didReceiveTerminate:)
+         name: UIApplicationWillTerminateNotification
+         object: nil];
     }
     return self;
 }
@@ -102,7 +119,9 @@ static  int modifyTimes = 0;
 #pragma mark Has Object OR Not
 
 - (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
-    KPCacheObject *obj = [[KPCacheObject alloc]initWithName:aName version:aVersion format:aFormat];
+
+    KPCacheObject *obj = [[[KPCacheObject alloc] init] autorelease];
+    obj.fileName = aName;
     //looking for better idea.
     if([_recordArray containsObject:obj]){
         if(aVersion == NSNotFound && aFormat == NSNotFound){
@@ -144,7 +163,7 @@ static  int modifyTimes = 0;
 
 - (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
     
-    KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat];
+    KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat dataLength:[aData length]];
     
     //TODO: if exist    remove or not delete;
     BOOL isExist = [self hasDataForName:aName version:NSNotFound format:NSNotFound];
@@ -153,6 +172,7 @@ static  int modifyTimes = 0;
         if(tmpObj.version == aVersion && tmpObj.format == aFormat){
             return YES;
         }else{
+            //TODO: 因为是同名称的，所以觉得应该算是modify，，应该有对应的处理。
             [self removeFileName:aName fromDisk:YES];
         }
     }
@@ -190,6 +210,8 @@ static  int modifyTimes = 0;
             }
         }
     }
+    //update access Count;
+    [self updateInfo:aName];
     return data;
 }
 
@@ -268,11 +290,36 @@ static  int modifyTimes = 0;
 
 #pragma mark -
 #pragma mark Utility method
+
+//for update
+- (void)updateInfo:(NSString *)aName{
+    KPCacheObject *obj = [self getLocalObjWithName:aName];
+    NSDictionary *dicBeforeUpdate = [obj toDic];
+    
+    [obj updateObjectInfo];
+    NSUInteger index = [_cacheResourceList indexOfObject:dicBeforeUpdate];
+    
+    NSDictionary *dicAfterUpdate = [obj toDic];
+    
+    [_cacheResourceList replaceObjectAtIndex:index withObject:dicAfterUpdate];
+    
+    [self saveDataImmediately:NO];
+}
+
+//for modify
+- (void)modifyIno:(NSString *)aName{
+    
+}
+
 - (KPCacheObject *)getLocalObjWithName:(NSString *)aName{
     KPCacheObject *obj = [[KPCacheObject alloc] init];
     obj.fileName = aName;
     NSUInteger index = [_recordArray indexOfObject:obj];
     [obj release];
+//    if(index == NSNotFound){
+//        return nil;
+//    }
+    
     KPCacheObject *objFromArr = [_recordArray objectAtIndex:index];
     return objFromArr;
 }
@@ -377,6 +424,14 @@ static  int modifyTimes = 0;
 - (void)didReceiveMemoryWarning:(void*)object {
     // Empty the memory cache when memory is low
     [self removeAll:NO];
+}
+
+- (void)didReceiveResignActive:(NSNotification *)defaultNotifation{
+    [self saveDataImmediately:YES];
+}
+
+- (void)didReceiveTerminate:(NSNotification *)defaultNotifation{
+    [self saveDataImmediately:YES];
 }
 
 @end

@@ -55,7 +55,7 @@
 
 - (NSDictionary *)toDic;
 - (id)initWithDic:(NSDictionary *)aDic;
-- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat dataLength:(NSUInteger)aDataLength;
 - (void)updateObjectInfo;
 
 @end
