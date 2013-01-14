@@ -22,11 +22,14 @@
     //test data
     UIImage *ima   = [UIImage imageNamed:@"aaaa.png"];
     NSData *data = UIImagePNGRepresentation(ima);
-    [KPURLCache sharedCache];
+    //[KPURLCache sharedCache];
     [[KPURLCache sharedCacheByName:@"Neo"] storeData:data fileName:@"helloworld" version:10 format:eDataFormatPNG];
     
+    [[KPURLCache sharedCacheByName:@"Neo"] storeData:data fileName:@"helloworld2" version:10 format:eDataFormatPNG];
     
-    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForFileName:@"helloworld"];
+    //[[KPURLCache sharedCacheByName:@"Neo"] removeFileName:@"helloworld2" fromDisk:YES];
+    
+    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForFileName:@"helloworld2"];
     UIImage *image2= [UIImage imageWithData:data2];
     [self.window addSubview:[[UIImageView alloc] initWithImage:image2]];
     

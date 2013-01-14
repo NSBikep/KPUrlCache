@@ -9,9 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "KPCacheConstant.h"
 typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
-	KPURLCachePolicyNone = 0,		//NO Cache
+	KPURLCachePolicyNone = 0,		//NO Cache     //not support
 	KPURLCachePolicyMemory = (1<<0),		//Memory
     KPURLCachePolicyDisk = (1<<1),       //Disk
+};
+
+
+
+typedef NS_ENUM(NSUInteger, EnumKPURLCacheInvalid){
+    KPURLCacheInvalidNone,
+    KPURLCacheInvalidInDate,
+    KPURLCacheInvalidInCount
 };
 
 
@@ -30,6 +38,8 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
     NSMutableArray      *_recordArray;          //the array record in plist ,there are KPCacheObjects in array
     
     float               _cache;
+    
+    EnumKPURLCacheInvalid   _invalidPolicy;
     
 }
 

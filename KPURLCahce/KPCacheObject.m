@@ -33,6 +33,8 @@
     if(self){
         self.fileName = [aDic valueForKey:KP_CACHEOBJECT_NAME];
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
+        self.version = [[aDic valueForKey:KP_CACHEOBJECT_VERSION] integerValue];
+        self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
     }
     return self;
     

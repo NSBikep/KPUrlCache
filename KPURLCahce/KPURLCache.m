@@ -35,6 +35,7 @@ static  int modifyTimes = 0;
     [_name release];
     [_recordArray release];
     [_cacheMemoryResource release];
+    [_cacheResourceList release];
     //[_diskPath release];
     [super dealloc];
 }
@@ -79,9 +80,10 @@ static  int modifyTimes = 0;
         _plistPath = [self cachePlistPathWithName:_name];
         _recordArray = [[NSMutableArray alloc] init];
         _cacheMemoryResource = [[NSMutableDictionary alloc] init];
-        _cacheResourceList  = [[NSMutableArray alloc] init];
-        NSArray *arr = [NSArray arrayWithContentsOfFile:_plistPath];
-        for(NSDictionary *dic in arr){
+        _invalidPolicy = KPURLCacheInvalidNone;
+        _cacheResourceList = [[NSMutableArray alloc]initWithContentsOfFile:_plistPath];
+        
+        for(NSDictionary *dic in _cacheResourceList){
             KPCacheObject *obj = [[KPCacheObject alloc]initWithDic:dic];
             [_recordArray addObject:obj];
         }
@@ -144,12 +146,15 @@ static  int modifyTimes = 0;
     
     KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat];
     
-    
-    
-    
+    //TODO: if exist    remove or not delete;
     BOOL isExist = [self hasDataForName:aName version:NSNotFound format:NSNotFound];
     if(isExist){
-        [self removeFileName:aName fromDisk:YES];
+        KPCacheObject *tmpObj = [self getLocalObjWithName:aName];
+        if(tmpObj.version == aVersion && tmpObj.format == aFormat){
+            return YES;
+        }else{
+            [self removeFileName:aName fromDisk:YES];
+        }
     }
     
     BOOL flag = [self storeToLocal:aData info:obj];
@@ -233,16 +238,13 @@ static  int modifyTimes = 0;
         if(![fm fileExistsAtPath:filePath]){
             flag = YES;
         }else{
-            flag = [fm removeItemAtPath:[self cachePathForName:filePath] error:nil];
+            flag = [fm removeItemAtPath:filePath error:nil];
         }
         if (flag) {
             //I have rewrited KPCacheObject's "equal to" method
             // need better way
-            KPCacheObject *obj = [[KPCacheObject alloc] init];
-            obj.fileName = aName;
-            NSUInteger index = [_recordArray indexOfObject:obj];
-            [obj release];
-            KPCacheObject *objFromArr = [_recordArray objectAtIndex:index];
+            KPCacheObject *objFromArr = [self getLocalObjWithName:aName];
+            NSLog(@"%@",[objFromArr toDic]);
             [_cacheResourceList removeObject:[objFromArr toDic]];
             [_recordArray removeObject:objFromArr];
             
@@ -266,6 +268,15 @@ static  int modifyTimes = 0;
 
 #pragma mark -
 #pragma mark Utility method
+- (KPCacheObject *)getLocalObjWithName:(NSString *)aName{
+    KPCacheObject *obj = [[KPCacheObject alloc] init];
+    obj.fileName = aName;
+    NSUInteger index = [_recordArray indexOfObject:obj];
+    [obj release];
+    KPCacheObject *objFromArr = [_recordArray objectAtIndex:index];
+    return objFromArr;
+}
+
 - (BOOL)storeToLocal:(NSData *)aData info:(KPCacheObject *)anObject{
     
     //有想法以后放在plist中，以NSData的格式存储。
