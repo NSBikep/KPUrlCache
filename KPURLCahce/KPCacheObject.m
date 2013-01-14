@@ -13,6 +13,8 @@
 #define KP_CACHEOBJECT_NAME         @"KPCacheObjectName"
 #define KP_CACHEOBJECT_ACCESSCOUNT  @"KPAccessCount"
 #define KP_CACHEOBJECT_DATALENGTH   @"KPDataLength"
+#define KP_CACHEOBJECT_CREATEDATE   @"KPDataCreateDate"
+#define KP_CACHEOBJECT_LASTACCESSDATE   @"KPDataLastAccessDate"
 
 @implementation KPCacheObject
 
@@ -37,6 +39,8 @@
         self.version = [[aDic valueForKey:KP_CACHEOBJECT_VERSION] integerValue];
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
         self.dataLength = [[aDic valueForKey:KP_CACHEOBJECT_DATALENGTH] integerValue];
+        self.creatDate = [aDic valueForKey:KP_CACHEOBJECT_CREATEDATE];
+        self.lastAccessDate = [aDic valueForKey:KP_CACHEOBJECT_LASTACCESSDATE];
     }
     return self;
     
@@ -63,6 +67,8 @@
     [resultDic setObject:[NSNumber numberWithInteger:self.format] forKey:KP_CACHEOBJECT_FORMAT];
     [resultDic setObject:[NSNumber numberWithInteger:self.accessCount] forKey:KP_CACHEOBJECT_ACCESSCOUNT];
     [resultDic setObject:[NSNumber numberWithInteger:self.dataLength] forKey:KP_CACHEOBJECT_DATALENGTH];
+    [resultDic setObject:self.creatDate forKey:KP_CACHEOBJECT_CREATEDATE];
+    [resultDic setObject:self.lastAccessDate forKey:KP_CACHEOBJECT_LASTACCESSDATE];
     return resultDic;
 }
 

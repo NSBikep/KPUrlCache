@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 
 
 
-typedef NS_ENUM(NSUInteger, EnumKPURLCacheInvalid){
+typedef NS_ENUM(NSUInteger, EnumKPURLInvalidPolicy){
     KPURLCacheInvalidNone,
     KPURLCacheInvalidInDate,
     KPURLCacheInvalidInCount
@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCacheInvalid){
     
     float               _cache;
     
-    EnumKPURLCacheInvalid   _invalidPolicy;
+    EnumKPURLInvalidPolicy   _invalidPolicy;
     
 }
 

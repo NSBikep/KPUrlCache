@@ -166,6 +166,7 @@ static  NSMutableDictionary *shareCaches = nil;
     KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat dataLength:[aData length]];
     
     //TODO: if exist    remove or not delete;
+#warning ..
     BOOL isExist = [self hasDataForName:aName version:NSNotFound format:NSNotFound];
     if(isExist){
         KPCacheObject *tmpObj = [self getLocalObjWithName:aName];

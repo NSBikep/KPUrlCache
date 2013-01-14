@@ -31,20 +31,20 @@
 //Create Date
 @property (nonatomic,retain)NSDate     *creatDate;
 //Effective Period
-@property (nonatomic,assign)CGFloat     effectivePeriod;
+@property (nonatomic,assign)CGFloat     effectivePeriod;   //TODO: 是否要做
 //version ————for update.
 @property (nonatomic,assign)NSInteger  resourceVersion;
 //modify Date
-@property (nonatomic,retain)NSDate     *modifyDate;
+@property (nonatomic,retain)NSDate     *modifyDate;        
 //access Date
 @property (nonatomic,retain)NSDate     *lastAccessDate;
 //data Length
 @property (nonatomic)NSUInteger    dataLength;
 //net Address
-@property (nonatomic,copy)NSString    *netAddress;
+@property (nonatomic,copy)NSString    *netAddress;          //TODO: 如何赋值
 
 //location Address
-@property (nonatomic,copy)NSString   *localAddress;
+@property (nonatomic,copy)NSString   *localAddress;         //TODO: 如何赋值
 
 //DataFormate
 @property (nonatomic,readonly)EnumDataFormat  format;
