@@ -60,49 +60,24 @@ typedef NS_ENUM(NSUInteger, EnumKPURLInvalidPolicy){
 
 
 //store
+- (BOOL)storeWithData:(NSData *)aData fileName:(NSString *)aName;
 
-
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName;
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion;
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDataFormat)aFormat;
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat )aFormat;
+- (BOOL)storeWithData:(NSData *)aData fileName:(NSString *)aName tag:(NSString *)aDataTag;
 
 //read
-- (NSData *)dataForFileName:(NSString *)aName;
+- (NSData *)dataForName:(NSString *)aName;
 
-- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion;
-
-- (NSData *)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat;
-
-- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+- (NSData *)dataForName:(NSString *)aName tag:(NSString *)aDataTag;
 
 //find
-//- (BOOL)hasDataForName:(NSString *)aName;
-//
-//- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion;
-//
-//- (BOOL)hasDataForName:(NSString *)aName format:(EnumDataFormat)aFormat;
-//
-//- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+- (BOOL)hasDataForName:(NSString *)aName;
 
+- (BOOL)hasDataForName:(NSString *)aName tag:(NSString *)aDataTag;
 
 //remove
 - (BOOL)removeAll:(BOOL)fromDisk;
 
 - (BOOL)removeFileName:(NSString *)aName fromDisk:(BOOL)fromDisk;
 // if needs we can add Others;
-
-//modify
-//TODO: 这是修改的接口，不是很清楚如何设计，外部是不是可以直接使用store 就可以进行覆盖。
-//- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName;
-//
-////- (BOOL)moveDataFromName:(NSString *)anOldName toName:(NSString *)aNewName;
-//
-//- (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName;
-
 
 @end

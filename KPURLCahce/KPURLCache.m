@@ -116,31 +116,29 @@ static  NSMutableDictionary *shareCaches = nil;
 
 
 #pragma mark -
-#pragma mark Has Object OR Not
+#pragma mark Has Object OR Not    finish
 
-- (BOOL)hasDataForName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
-
+- (BOOL)hasDataForName:(NSString *)aName{
     KPCacheObject *obj = [[[KPCacheObject alloc] init] autorelease];
     obj.fileName = aName;
-    //looking for better idea.
     if([_recordArray containsObject:obj]){
-        if(aVersion == NSNotFound && aFormat == NSNotFound){
-            return YES;
-        }else if(aVersion != NSNotFound){
-            if(aVersion == obj.version){
-                return YES;
-            }
-        }else if(aFormat != NSNotFound){
-            if(aFormat == obj.format){
-                return YES;
-            }
-        }else{
-            if(aFormat == obj.format && aVersion == obj.version){
-                return YES;
-            }
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)hasDataForName:(NSString *)aName tag:(NSString *)aDataTag{
+    KPCacheObject *obj = [[[KPCacheObject alloc] init] autorelease];
+    obj.fileName = aName;
+    if([_recordArray containsObject:obj]){
+        NSUInteger index = [_recordArray indexOfObject:obj];
+        if(index == NSNotFound){
+            return NO;
         }
-    }else{
-        return NO;
+        KPCacheObject *actualObj = [_recordArray objectAtIndex:index];
+        if([actualObj.tag isEqualToString:aDataTag]){
+            return YES;
+        }
     }
     return NO;
 }
@@ -149,60 +147,65 @@ static  NSMutableDictionary *shareCaches = nil;
 #pragma mark -
 #pragma mark Store Data Object
 
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName{
-    return [self storeData:aData fileName:aName version:KPURLCACHE_DEFAULT_VERSION format:KPURLCACHE_DEFAULT_FORMAT];
+- (BOOL)storeWithData:(NSData *)aData fileName:(NSString *)aName{
+    return [self storeWithData:aData fileName:aName tag:@""];
 }
 
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName format:(EnumDataFormat)aFormat{
-    return [self storeData:aData fileName:aName version:KPURLCACHE_DEFAULT_VERSION format:aFormat];
-}
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion{
-    return [self storeData:aData fileName:aName version:aVersion format:KPURLCACHE_DEFAULT_FORMAT];
-}
-
-- (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
-    
-    KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat dataLength:[aData length]];
-    
-    //TODO: if exist    remove or not delete;
-#warning ..
-    BOOL isExist = [self hasDataForName:aName version:NSNotFound format:NSNotFound];
-    if(isExist){
-        KPCacheObject *tmpObj = [self getLocalObjWithName:aName];
-        if(tmpObj.version == aVersion && tmpObj.format == aFormat){
-            return YES;
-        }else{
-            //TODO: 因为是同名称的，所以觉得应该算是modify，，应该有对应的处理。
-            [self removeFileName:aName fromDisk:YES];
-        }
+- (BOOL)storeWithData:(NSData *)aData fileName:(NSString *)aName tag:(NSString *)aDataTag{
+    //KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName tag:aDataTag length:[aData length]];
+    if(([aDataTag isEqualToString:@""] &&[self hasDataForName:aName]) ||
+       (![aDataTag isEqualToString:@""]&&[self hasDataForName:aName tag:aDataTag])){
+        return [self modifyWithData:aData fileName:aName tag:aDataTag];
     }
     
-    BOOL flag = [self storeToLocal:aData info:obj];
+    KPCacheObject *newObj = [[KPCacheObject alloc] initWithName:aName tag:aDataTag length:[aData length]];
     
+    BOOL flag =  [self storeToLocal:aData info:newObj];
     if(flag){
-        NSDictionary *objDic = [obj toDic];
-        [_recordArray addObject:obj];
-        [_cacheResourceList addObject:objDic];
+        [_recordArray addObject:newObj];
+        [_cacheResourceList addObject:[newObj toDic]];
         if(_cachePolicy == KPURLCachePolicyMemory){
-            NSString *storeName = [self keyForFileName:aName];
-            [_cacheMemoryResource setObject:aData forKey:storeName];
+            [_cacheMemoryResource setValue:aData forKey:[self keyForFileName:aName]];
         }
         [self saveDataImmediately:YES];
     }
-    [obj release];
+    
+    [newObj release];
+
+    
     return flag;
 }
 
 #pragma mark -
 #pragma mark read Data
-- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
+
+- (NSData *)dataForName:(NSString *)aName{
     //check in Memory
     NSString *fileKey = [self keyForFileName:aName];
     NSData *data = nil;
     data = [_cacheMemoryResource valueForKey:fileKey];
     if(data == nil){
-        BOOL flag = [self hasDataForName:aName version:aVersion format:aFormat];
+        BOOL flag = [self hasDataForName:aName];
+        if(flag){
+            NSString *filePath = [self cachePathForKey:fileKey];
+            NSFileManager* fm = [NSFileManager defaultManager];
+            if([fm fileExistsAtPath:filePath]){
+                
+                data = [NSData dataWithContentsOfFile:filePath];
+                [self updateInfo:aName];
+            }
+        }
+    }
+    
+    return data;
+}
+
+- (NSData *)dataForName:(NSString *)aName tag:(NSString *)aDataTag{
+    NSString *fileKey = [self keyForFileName:aName];
+    NSData *data = nil;
+    data = [_cacheMemoryResource valueForKey:fileKey];
+    if(data == nil){
+        BOOL flag = [self hasDataForName:aName tag:aDataTag];
         if(flag){
             NSString *filePath = [self cachePathForKey:fileKey];
             NSFileManager* fm = [NSFileManager defaultManager];
@@ -211,21 +214,8 @@ static  NSMutableDictionary *shareCaches = nil;
             }
         }
     }
-    //update access Count;
     [self updateInfo:aName];
     return data;
-}
-
-- (NSData *)dataForFileName:(NSString *)aName{
-    return [self dataForFileName:aName version:NSNotFound format:NSNotFound];
-}
-
-- (NSData *)dataForFileName:(NSString *)aName format:(EnumDataFormat)aFormat{
-    return [self dataForFileName:aName version:NSNotFound format:aFormat];
-}
-
-- (NSData *)dataForFileName:(NSString *)aName version:(NSInteger)aVersion{
-    return [self dataForFileName:aName version:aVersion format:NSNotFound];
 }
 
 
@@ -280,13 +270,29 @@ static  NSMutableDictionary *shareCaches = nil;
 #pragma mark -
 #pragma mark modify
 //TODO: neccessary to do
-- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName{
-    BOOL flag = NO;
-    return flag;
-}
-
-- (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName{
+- (BOOL)modifyWithData:(NSData *)aData fileName:(NSString *)aName tag:(NSString *)aDataTag{
+    //处理内存
+    if(_cachePolicy == KPURLCachePolicyMemory){
+        NSData *tmpData = [aData copy];
+        [_cacheMemoryResource setValue:tmpData forKey:[self keyForFileName:aName]];
+        [tmpData release];
+    }
     
+    //处理2个Arr中的文件
+    KPCacheObject *obj = [self getLocalObjWithName:aName];
+    [_cacheResourceList removeObject:[obj toDic]];
+    obj.modifyDate = [NSDate date];
+    obj.tag = aDataTag;
+    [_cacheResourceList addObject:[obj toDic]];
+    
+    
+    //处理本地文件
+    NSData *localData = [self dataForName:aName tag:aDataTag];
+    if(localData && [aData isEqualToData:localData]){
+        return YES;
+    }else{
+        return [self storeToLocal:aData info:obj];
+    }
 }
 
 #pragma mark -
@@ -299,7 +305,9 @@ static  NSMutableDictionary *shareCaches = nil;
     
     [obj updateObjectInfo];
     NSUInteger index = [_cacheResourceList indexOfObject:dicBeforeUpdate];
-    
+    if(index == NSNotFound){
+        return;
+    }
     NSDictionary *dicAfterUpdate = [obj toDic];
     
     [_cacheResourceList replaceObjectAtIndex:index withObject:dicAfterUpdate];
@@ -317,9 +325,9 @@ static  NSMutableDictionary *shareCaches = nil;
     obj.fileName = aName;
     NSUInteger index = [_recordArray indexOfObject:obj];
     [obj release];
-//    if(index == NSNotFound){
-//        return nil;
-//    }
+    if(index == NSNotFound){
+        return nil;
+    }
     
     KPCacheObject *objFromArr = [_recordArray objectAtIndex:index];
     return objFromArr;

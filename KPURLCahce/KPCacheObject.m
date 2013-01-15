@@ -9,7 +9,7 @@
 #import "KPCacheObject.h"
 
 #define KP_CACHEOBJECT_FORMAT       @"KPCacheObjectFormat"
-#define KP_CACHEOBJECT_VERSION      @"KPCacheObjectVersion"
+#define KP_CACHEOBJECT_TAG      @"KPCacheObjectTag"
 #define KP_CACHEOBJECT_NAME         @"KPCacheObjectName"
 #define KP_CACHEOBJECT_ACCESSCOUNT  @"KPAccessCount"
 #define KP_CACHEOBJECT_DATALENGTH   @"KPDataLength"
@@ -18,7 +18,7 @@
 
 @implementation KPCacheObject
 
-@synthesize accessCount,lastAccessDate,creatDate,dataLength,effectivePeriod,format = _format,localAddress,modifyDate,netAddress,resourceVersion,fileName;
+@synthesize accessCount,lastAccessDate,creatDate,dataLength,effectivePeriod,format = _format,localAddress,modifyDate,netAddress,tag,fileName;
 - (void)dealloc{
     [fileName release];
     [lastAccessDate release];
@@ -26,6 +26,7 @@
     [localAddress release];
     [modifyDate release];
     [netAddress release];
+    [tag release];
     [super dealloc];
 }
 
@@ -36,7 +37,7 @@
     if(self){
         self.fileName = [aDic valueForKey:KP_CACHEOBJECT_NAME];
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
-        self.version = [[aDic valueForKey:KP_CACHEOBJECT_VERSION] integerValue];
+        self.tag = [aDic valueForKey:KP_CACHEOBJECT_TAG];
         self.accessCount = [[aDic valueForKey:KP_CACHEOBJECT_ACCESSCOUNT] integerValue];
         self.dataLength = [[aDic valueForKey:KP_CACHEOBJECT_DATALENGTH] integerValue];
         self.creatDate = [aDic valueForKey:KP_CACHEOBJECT_CREATEDATE];
@@ -46,13 +47,12 @@
     
 }
 
-- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat dataLength:(NSUInteger)aDataLength{
+- (id)initWithName:(NSString *)aName tag:(NSString *)aDataTag length:(NSUInteger)aDataLength{ 
     self = [super init];
     if(self){
         self.dataLength = aDataLength;
         self.fileName = aName;
-        self.version = aVersion;
-        _format = aFormat;
+        self.tag = aDataTag;
         self.lastAccessDate = [NSDate date];
         self.creatDate = [NSDate date];
         
@@ -63,8 +63,8 @@
 - (NSDictionary *)toDic{
     NSMutableDictionary *resultDic = [NSMutableDictionary dictionary];
     [resultDic setObject:self.fileName forKey:KP_CACHEOBJECT_NAME];
-    [resultDic setObject:[NSNumber numberWithInteger:self.version] forKey:KP_CACHEOBJECT_VERSION];
-    [resultDic setObject:[NSNumber numberWithInteger:self.format] forKey:KP_CACHEOBJECT_FORMAT];
+    [resultDic setObject:self.tag forKey:KP_CACHEOBJECT_TAG];
+    //[resultDic setObject:[NSNumber numberWithInteger:self.format] forKey:KP_CACHEOBJECT_FORMAT];
     [resultDic setObject:[NSNumber numberWithInteger:self.accessCount] forKey:KP_CACHEOBJECT_ACCESSCOUNT];
     [resultDic setObject:[NSNumber numberWithInteger:self.dataLength] forKey:KP_CACHEOBJECT_DATALENGTH];
     [resultDic setObject:self.creatDate forKey:KP_CACHEOBJECT_CREATEDATE];

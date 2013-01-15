@@ -25,7 +25,7 @@
 //file Name
 @property (nonatomic,copy)NSString      *fileName;
 //version
-@property (nonatomic,assign)NSInteger   version;
+@property (nonatomic,copy)NSString      *tag;
 //Access Count
 @property (nonatomic,assign)NSInteger  accessCount;
 //Create Date
@@ -55,7 +55,7 @@
 
 - (NSDictionary *)toDic;
 - (id)initWithDic:(NSDictionary *)aDic;
-- (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat dataLength:(NSUInteger)aDataLength;
+- (id)initWithName:(NSString *)aName tag:(NSString *)aDataTag length:(NSUInteger)aDataLength;
 - (void)updateObjectInfo;
 
 @end
