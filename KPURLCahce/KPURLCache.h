@@ -60,6 +60,9 @@ typedef NS_ENUM(NSUInteger, EnumKPURLInvalidPolicy){
 
 
 //store
+
+
+
 - (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName;
 
 - (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion;
