@@ -343,6 +343,9 @@ static  NSMutableDictionary *shareCaches = nil;
     NSString* filePath = [self cachePathForKey:storeName];
     NSFileManager* fm = [NSFileManager defaultManager];
     BOOL flag =[fm createFileAtPath:filePath contents:aData attributes:nil];
+    if(flag){
+        [self saveDataImmediately:YES];
+    }
     return flag;
 }
 

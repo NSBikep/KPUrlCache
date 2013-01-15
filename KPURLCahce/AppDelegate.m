@@ -21,7 +21,9 @@
     
     //test data
     UIImage *ima   = [UIImage imageNamed:@"aaaa.png"];
+    UIImage *ima2   = [UIImage imageNamed:@"bbbb.png"];
     NSData *data = UIImagePNGRepresentation(ima);
+    NSData *data2 = UIImagePNGRepresentation(ima2);
     //[KPURLCache sharedCache];
 //    [[KPURLCache sharedCacheByName:@"Neo"] storeData:data fileName:@"helloworld" version:10 format:eDataFormatPNG];
 //    
@@ -30,11 +32,12 @@
     //[[KPURLCache sharedCacheByName:@"Neo"] removeFileName:@"helloworld2" fromDisk:YES];
     
     [[KPURLCache sharedCacheByName:@"Neo"] storeWithData:data fileName:@"dfghjkl" tag:@"justTest"];
-    
-    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForName:@"dfghjkl" tag:@"justTest"];
-    if(data2){
-        UIImage *image2= [UIImage imageWithData:data2];
-        [self.window addSubview:[[UIImageView alloc] initWithImage:image2]];
+    [[KPURLCache sharedCacheByName:@"Neo"] storeWithData:data2 fileName:@"dfghjkl"];
+    NSData *data3 = nil;
+    //NSData *data3 = [[KPURLCache sharedCacheByName:@"Neo"] dataForName:@"dfghjkl" tag:@"justTest"];
+    if(data3){
+        UIImage *image3= [UIImage imageWithData:data3];
+        [self.window addSubview:[[UIImageView alloc] initWithImage:image3]];
     }
     
     
