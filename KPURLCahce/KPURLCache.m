@@ -284,6 +284,7 @@ static  NSMutableDictionary *shareCaches = nil;
     obj.modifyDate = [NSDate date];
     obj.tag = aDataTag;
     [_cacheResourceList addObject:[obj toDic]];
+    [self saveDataImmediately:NO];
     
     
     //处理本地文件

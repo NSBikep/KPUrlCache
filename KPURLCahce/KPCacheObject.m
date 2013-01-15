@@ -15,6 +15,7 @@
 #define KP_CACHEOBJECT_DATALENGTH   @"KPDataLength"
 #define KP_CACHEOBJECT_CREATEDATE   @"KPDataCreateDate"
 #define KP_CACHEOBJECT_LASTACCESSDATE   @"KPDataLastAccessDate"
+#define KP_CACHEOBJECT_MODIFYDATE   @"KPDataModifyDate"
 
 @implementation KPCacheObject
 
@@ -42,6 +43,7 @@
         self.dataLength = [[aDic valueForKey:KP_CACHEOBJECT_DATALENGTH] integerValue];
         self.creatDate = [aDic valueForKey:KP_CACHEOBJECT_CREATEDATE];
         self.lastAccessDate = [aDic valueForKey:KP_CACHEOBJECT_LASTACCESSDATE];
+        self.modifyDate = [aDic valueForKey:KP_CACHEOBJECT_MODIFYDATE];
     }
     return self;
     
@@ -55,6 +57,7 @@
         self.tag = aDataTag;
         self.lastAccessDate = [NSDate date];
         self.creatDate = [NSDate date];
+        self.modifyDate = [NSDate date];
         
     }
     return self;
@@ -69,6 +72,7 @@
     [resultDic setObject:[NSNumber numberWithInteger:self.dataLength] forKey:KP_CACHEOBJECT_DATALENGTH];
     [resultDic setObject:self.creatDate forKey:KP_CACHEOBJECT_CREATEDATE];
     [resultDic setObject:self.lastAccessDate forKey:KP_CACHEOBJECT_LASTACCESSDATE];
+    [resultDic setObject:self.modifyDate forKey:KP_CACHEOBJECT_MODIFYDATE];
     return resultDic;
 }
 
