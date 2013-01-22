@@ -18,8 +18,17 @@
     [self.window makeKeyAndVisible];
     //NSString *QQnum;
     //[KPURLCache sharedCacheByName:QQnum];
+    
+    //test data
+    UIImage *ima   = [UIImage imageNamed:@"aaaa.png"];
+    NSData *data = UIImagePNGRepresentation(ima);
     [KPURLCache sharedCache];
-    [KPURLCache sharedCacheByName:@"Neo"];
+    [[KPURLCache sharedCacheByName:@"Neo"] storeData:data fileName:@"helloworld" version:10 format:eDataFormatPNG];
+    
+    
+    NSData *data2 = [[KPURLCache sharedCacheByName:@"Neo"] dataForFileName:@"helloworld"];
+    UIImage *image2= [UIImage imageWithData:data2];
+    [self.window addSubview:[[UIImageView alloc] initWithImage:image2]];
     
     
     NSMutableArray *arr = [[NSMutableArray alloc] init];

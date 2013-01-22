@@ -37,9 +37,9 @@
 //modify Date
 @property (nonatomic,retain)NSDate     *modifyDate;
 //access Date
-@property (nonatomic,retain)NSDate     *accessDate;
+@property (nonatomic,retain)NSDate     *lastAccessDate;
 //data Length
-@property (nonatomic,readonly)CGFloat    dataLength;
+@property (nonatomic)NSUInteger    dataLength;
 //net Address
 @property (nonatomic,copy)NSString    *netAddress;
 
@@ -56,5 +56,6 @@
 - (NSDictionary *)toDic;
 - (id)initWithDic:(NSDictionary *)aDic;
 - (id)initWithName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat;
+- (void)updateObjectInfo;
 
 @end

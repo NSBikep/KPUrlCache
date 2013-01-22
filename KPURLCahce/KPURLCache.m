@@ -25,7 +25,6 @@ static  int modifyTimes = 0;
 @implementation KPURLCache
 
 @synthesize cacheMaxCache = _cacheMaxCount,cachePolicy = _cachePolicy,eachMaxCapacityInMemory = _eachMaxCapacityInMemory;
-//@synthesize diskPath = _diskPath;
 
 
 - (void)dealloc{
@@ -144,11 +143,19 @@ static  int modifyTimes = 0;
 - (BOOL)storeData:(NSData *)aData fileName:(NSString *)aName version:(NSInteger)aVersion format:(EnumDataFormat)aFormat{
     
     KPCacheObject *obj = [[KPCacheObject alloc] initWithName:aName version:aVersion format:aFormat];
-    NSDictionary *objDic = [obj toDic];
+    
+    
+    
+    
+    BOOL isExist = [self hasDataForName:aName version:NSNotFound format:NSNotFound];
+    if(isExist){
+        [self removeFileName:aName fromDisk:YES];
+    }
     
     BOOL flag = [self storeToLocal:aData info:obj];
     
     if(flag){
+        NSDictionary *objDic = [obj toDic];
         [_recordArray addObject:obj];
         [_cacheResourceList addObject:objDic];
         if(_cachePolicy == KPURLCachePolicyMemory){
@@ -247,19 +254,9 @@ static  int modifyTimes = 0;
 
 #pragma mark -
 #pragma mark modify
-
+//TODO: neccessary to do
 - (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName{
     BOOL flag = NO;
-    KPCacheObject *obj = [[KPCacheObject alloc] init];
-    obj.fileName = anOldName;
-    if([_recordArray containsObject:obj]){
-        NSFileManager *fm = [NSFileManager defaultManager];
-        NSString *oldFilePath = [self cachePathForName:anOldName];
-        if([fm fileExistsAtPath:oldFilePath]){
-            NSString *newFilePath = [self cachePathForName:aNewName];
-            //未完成
-        }
-    }
     return flag;
 }
 
@@ -273,6 +270,7 @@ static  int modifyTimes = 0;
     
     //有想法以后放在plist中，以NSData的格式存储。
     NSString *fileName = anObject.fileName;
+    anObject.dataLength = aData.length;
     NSString *storeName = [self keyForFileName:fileName];
     NSString* filePath = [self cachePathForKey:storeName];
     NSFileManager* fm = [NSFileManager defaultManager];

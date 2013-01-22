@@ -15,10 +15,10 @@
 
 @implementation KPCacheObject
 
-@synthesize accessCount,accessDate,creatDate,dataLength,effectivePeriod,format = _format,localAddress,modifyDate,netAddress,resourceVersion,fileName;
+@synthesize accessCount,lastAccessDate,creatDate,dataLength,effectivePeriod,format = _format,localAddress,modifyDate,netAddress,resourceVersion,fileName;
 - (void)dealloc{
     [fileName release];
-    [accessDate release];
+    [lastAccessDate release];
     [creatDate release];
     [localAddress release];
     [modifyDate release];
@@ -44,6 +44,8 @@
         self.fileName = aName;
         self.version = aVersion;
         _format = aFormat;
+        self.lastAccessDate = [NSDate date];
+        self.creatDate = [NSDate date];
     }
     return self;
 }
@@ -69,6 +71,11 @@
 
 - (NSUInteger)hash{
     return [self.fileName hash];
+}
+
+- (void)updateObjectInfo{
+    self.accessCount ++;
+    self.lastAccessDate = [NSDate date];
 }
 
 

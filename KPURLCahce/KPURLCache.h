@@ -84,11 +84,12 @@ typedef NS_ENUM(NSUInteger, EnumKPURLCachePolicy) {
 // if needs we can add Others;
 
 //modify
-- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName;
-
-//- (BOOL)moveDataFromName:(NSString *)anOldName toName:(NSString *)aNewName;
-
-- (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName;
+//TODO: 这是修改的接口，不是很清楚如何设计，外部是不是可以直接使用store 就可以进行覆盖。
+//- (BOOL)renameFromName:(NSString *)anOldName toName:(NSString *)aNewName;
+//
+////- (BOOL)moveDataFromName:(NSString *)anOldName toName:(NSString *)aNewName;
+//
+//- (void)modifyDataVersion:(NSInteger)aVersion forName:(NSString *)aName;
 
 
 @end
